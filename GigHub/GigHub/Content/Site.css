@@ -79,6 +79,12 @@ h6,
     margin-bottom: 20px;
 }
 
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+
 /* User styles */
 .mb-20 {
     margin-bottom: 20px;
