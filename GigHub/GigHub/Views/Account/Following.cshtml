@@ -1,0 +1,31 @@
+﻿@model System.Linq.IQueryable<GigHub.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Followees";
+}
+
+<h2>Followees</h2>
+
+<ul class="gigs V-Offset4">
+    @foreach (var followee in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+
+                </div>
+                <div class="day">
+                    
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @followee.Name
+                </span>
+                <span class="genre">
+                </span>
+
+            </div>
+        </li>
+    }
+</ul>

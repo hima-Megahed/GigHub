@@ -479,5 +479,19 @@ namespace GigHub.Controllers
             }
         }
         #endregion
+
+
+        #region user_Actions
+
+        public ActionResult Following()
+        {
+            var context = new ApplicationDbContext();
+            var userId = User.Identity.GetUserId();
+            var followees = context.Followings.Where(a => a.FollowerId == userId).Select(a => a.Followee);
+
+            return View(followees);
+        }
+        #endregion
+
     }
 }
