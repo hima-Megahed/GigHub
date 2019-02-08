@@ -27,6 +27,25 @@ textarea {
     max-width: 280px;
 }
 
+.V-Offset {
+    margin-top: 2px;
+}
+.V-Offset1 {
+    margin-top: 4px;
+}
+.V-Offset2 {
+    margin-top: 8px;
+}
+.V-Offset3 {
+    margin-top: 20px;
+}
+.V-Offset4 {
+    margin-top: 40px;
+}
+.V-Offset5 {
+    margin-top: 60px;
+}
+
 /* Bootstrap overrides */
 .navbar-inverse {
     background-color: #ff4342;
