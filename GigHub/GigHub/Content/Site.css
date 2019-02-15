@@ -157,3 +157,29 @@ span.field-validation-error {
 .gigs > li .details .genre {
     font-size: 15px;
 }
+
+
+.gigs > li .actions {
+    font-size: 15px;
+    display: none;
+}
+
+.gigs > li:hover .actions {
+    display: block;
+}
+
+.gigs > li .GigEdit {
+    padding-right: 5px;
+}
+
+.gigs > li .GigDelete {
+    padding-left: 7px;
+}
+
+.gigs > li .divider {
+    position: absolute;
+    border-left: 1px solid black;
+    left: 32px;
+    top: 41px;
+    bottom: 1px;
+}
