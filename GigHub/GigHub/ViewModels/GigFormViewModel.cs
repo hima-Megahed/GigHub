@@ -12,6 +12,7 @@ namespace GigHub.ViewModels
     public class GigFormViewModel
     {
         public int Id { get; set; }
+
         [Required]
         public string Venue { get; set; }
 
@@ -37,7 +38,7 @@ namespace GigHub.ViewModels
                 Expression<Func<GigsController, ActionResult>> edit = 
                     (c => c.Edit(this));
                 Expression<Func<GigsController, ActionResult>> create = 
-                    (c => c.Edit(this));
+                    (c => c.Create(this));
 
                 var action = (Id != 0) ? edit : create;
 
