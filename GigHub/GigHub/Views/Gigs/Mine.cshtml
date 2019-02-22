@@ -33,50 +33,46 @@
                 <div class="actions">
                     <a href="@Url.Action("Edit","Gigs", new {gigId = gig.Id})" class="GigEdit">Edit</a>
                     <div class="divider"></div>
-                    <a href="#" data-gig-id="@gig.Id" class="GigDelete">Delete</a>
+                    <a href="#" data-gig-id="@gig.Id" class="GigCancel">Cancel</a>
                 </div>
-            </div>  
+            </div>
         </li>
     }
 </ul>
 
-@Html.Partial("ModalConfirmDelete")
+
 
 @section scripts{
-    <script>
-        var modalConfirm = function(callback) {
-
-            $(".GigDelete").on("click",
-                function() {
-                    $("#delete-modal").modal('show');
-                });
-
-            $("#modal-btn-yes").on("click",
-                function() {
-                    callback(true);
-                    $("#delete-modal").modal('hide');
-                });
-
-            $("#modal-btn-no").on("click",
-                function() {
-                    callback(false);
-                    $("#delete-modal").modal('hide');
-                });
-        };
-
-        modalConfirm(function(confirm) {
-            if (confirm) {
-                $.post("@Url.Action("Delete","Gigs")",
-                        { gigId: $(".GigDelete").attr("data-gig-id") })
-                    .done(function () {
-                        $(".alert-success").show();
-                        setTimeout(function () { location.reload(); }, 2000);
-                    })
-                    .fail(function() {
-                        alert("Something Wrong please try again.");
-                    });
+<script>
+        $(".GigCancel").on("click", function() {
             
-            }
+            bootbox.confirm({
+                message: "Are you sure you want to Cancel this Gig?",
+                title: "Confirm",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-danger'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-default'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.post("@Url.Action("Cancel","Gigs")",
+                                { gigId: $(".GigCancel").attr("data-gig-id") })
+                            .done(function () {
+                                $(".alert-success").show();
+                                setTimeout(function () { location.reload(); }, 1000);
+                            })
+                            .fail(function() {
+                                alert("Something Wrong please try again.");
+                            });
+                    }
+                }
+            });
         });
-    </script>
+</script>
 }

@@ -127,7 +127,7 @@ namespace GigHub.Controllers
         {
             var userId = User.Identity.GetUserId();
             var gigs = _context.Gigs.
-                Where(a => a.ArtistId == userId && a.DateTime > DateTime.Now)
+                Where(a => a.ArtistId == userId && a.DateTime > DateTime.Now && a.IsCanceled == false)
                 .Include(a => a.Genre)
                 .ToList();
 
@@ -136,12 +136,17 @@ namespace GigHub.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(int gigId)
+        public ActionResult Cancel(int gigId)
         {
             var userId = User.Identity.GetUserId();
             var gig = _context.Gigs.Single(g => g.Id == gigId && g.ArtistId == userId);
 
-            _context.Gigs.Remove(gig);
+            if (gig.IsCanceled)
+            {
+                return HttpNotFound();
+            }
+
+            gig.IsCanceled = true;
             _context.SaveChanges();
 
             return Content("");

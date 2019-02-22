@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/a1655840-b178-40a4-9447-80bc8742c580/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/GigHub</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -210,8 +211,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AttendancesController.cs" />
-    <Compile Include="Controllers\FollowingController.cs" />
+    <Compile Include="Controllers\APIs\AttendancesController.cs" />
+    <Compile Include="Controllers\APIs\FollowingController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -251,6 +252,14 @@
     <Compile Include="Migrations\201901281553036_AddFollowing.cs" />
     <Compile Include="Migrations\201901281553036_AddFollowing.Designer.cs">
       <DependentUpon>201901281553036_AddFollowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902220120320_mergeDeleteGig.cs" />
+    <Compile Include="Migrations\201902220120320_mergeDeleteGig.Designer.cs">
+      <DependentUpon>201902220120320_mergeDeleteGig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.cs" />
+    <Compile Include="Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.Designer.cs">
+      <DependentUpon>201902220229411_AddIsCanceledToGig_ImplementingDelete.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,7 +344,6 @@
     <Content Include="Views\Gigs\GigForm.cshtml" />
     <Content Include="Views\Account\Following.cshtml" />
     <Content Include="Views\Gigs\Mine.cshtml" />
-    <Content Include="Views\Shared\ModalConfirmDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -376,6 +384,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901281553036_AddFollowing.resx">
       <DependentUpon>201901281553036_AddFollowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902220120320_mergeDeleteGig.resx">
+      <DependentUpon>201902220120320_mergeDeleteGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.resx">
+      <DependentUpon>201902220229411_AddIsCanceledToGig_ImplementingDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
