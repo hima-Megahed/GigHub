@@ -24,6 +24,7 @@ namespace GigHub.Controllers
 
             var viewModel = new GigFormViewModel
             {
+                Id = 0,
                 Genres = _context.Genres.ToList(),
                 Heading = "Add a Gig"
             };
@@ -131,6 +132,19 @@ namespace GigHub.Controllers
                 .ToList();
 
             return View(gigs);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Delete(int gigId)
+        {
+            var userId = User.Identity.GetUserId();
+            var gig = _context.Gigs.Single(g => g.Id == gigId && g.ArtistId == userId);
+
+            _context.Gigs.Remove(gig);
+            _context.SaveChanges();
+
+            return Content("");
         }
     }
 }

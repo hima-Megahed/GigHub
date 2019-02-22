@@ -12,6 +12,7 @@ namespace GigHub.ViewModels
     public class GigFormViewModel
     {
         public int Id { get; set; }
+
         [Required]
         public string Venue { get; set; }
 
