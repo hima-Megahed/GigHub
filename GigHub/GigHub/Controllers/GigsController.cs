@@ -75,6 +75,8 @@ namespace GigHub.Controllers
             _context.Gigs.Add(gig);
             _context.SaveChanges();
 
+            Notification.GigCreated(gig);
+
             return RedirectToAction("Mine", "Gigs");
         }
 
@@ -90,11 +92,12 @@ namespace GigHub.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.Id == viewModel.Id && g.ArtistId == userId);
+            var gig = _context.Gigs
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .Single(g => g.Id == viewModel.Id && g.ArtistId == userId);
 
-            gig.GenreId = viewModel.Genre;
-            gig.Venue = viewModel.Venue;
-            gig.DateTime = viewModel.GetDateTime();
+            gig.Modify(viewModel.GetDateTime(), viewModel.Venue, viewModel.Genre);
+            
 
             _context.SaveChanges();
 
@@ -139,17 +142,25 @@ namespace GigHub.Controllers
         public ActionResult Cancel(int gigId)
         {
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.Id == gigId && g.ArtistId == userId);
+            var gig = _context.Gigs
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .Single(g => g.Id == gigId && g.ArtistId == userId);
 
             if (gig.IsCanceled)
             {
                 return HttpNotFound();
             }
 
-            gig.IsCanceled = true;
+            gig.Cancel();
+            
             _context.SaveChanges();
 
             return Content("");
+        }
+
+        public ActionResult Search(GigsViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Home", new {query = viewModel.SearchTerm});
         }
     }
 }

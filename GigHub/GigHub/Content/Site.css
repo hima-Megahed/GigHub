@@ -1,185 +1,244 @@
 ﻿/* Import Fonts */
-@import url('https://fonts.googleapis.com/css?family=Lato');
-
-
-body {
-    padding-top: 90px;
-    padding-bottom: 20px;
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wWw.ttf) format('truetype');
 }
-
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
-    white-space: normal;
-}
-
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+/* Bootstrap overrides */
+/* page-level styles */
+body {
+  padding-top: 90px;
+  padding-bottom: 20px;
+  font-size: 18px;
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
 }
-
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.dl-horizontal dt {
+  white-space: normal;
+}
+input {
+  max-width: 280px;
+}
+select {
+  max-width: 280px;
+}
+textarea {
+  max-width: 280px;
+}
 .V-Offset {
-    margin-top: 2px;
+  margin-top: 2px;
 }
 .V-Offset1 {
-    margin-top: 4px;
+  margin-top: 4px;
 }
 .V-Offset2 {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 .V-Offset3 {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .V-Offset4 {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 .V-Offset5 {
-    margin-top: 60px;
+  margin-top: 60px;
 }
-
-/* Bootstrap overrides */
+.popover {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .navbar-inverse {
-    background-color: #ff4342;
-    border-color: #ff4342;
+  background-color: #ff4342;
+  border-color: #ff4342;
 }
-
 .navbar-inverse .navbar-nav > li > a {
-    color: #fff;
+  color: #fff;
 }
-
-.navbar-inverse .navbar-brand {
-    color: #fff;
-}
-
-.navbar-brand {
-    font-weight: 700;
-}
-
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
-    border-top-color: #fff;
-    border-bottom-color: #fff;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
 }
-
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: #e42d2d;
+.navbar-inverse .navbar-nav > .open > a {
+  background-color: #e42d2d;
 }
-
-body {
-    font-size: 18px;
+.navbar-inverse .navbar-nav > .open > a:hover {
+  background-color: #e42d2d;
 }
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #e42d2d;
+}
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+.navbar-inverse .notifications {
+  position: relative;
+}
+.navbar-inverse .notifications .badge {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  background: #a80a0a;
+}
+.navbar-brand {
+  font-weight: 700;
+}
+h1 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+h2 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+h3 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+h4 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+h5 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+h6 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.h1 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.h2 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.h3 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.h4 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.h5 {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
 .h6 {
-    font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    line-height: 1.1;
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
 }
-
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-
 span.field-validation-error {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
-
-
-/* page-level styles */
-
 .mb-20 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-
 .gigs {
-    list-style-type: none;
+  list-style-type: none;
 }
-
 .gigs > li {
-    position: relative;
-    margin-bottom: 30px;
+  position: relative;
+  margin-bottom: 30px;
 }
-
 .gigs > li .date {
-    background: red;
-    color: white;
-    text-align: center;
-    width: 60px;
-    -ms-border-radius: 8px;
-    border-radius: 8px;
+  background: red;
+  color: white;
+  text-align: center;
+  width: 60px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
 }
-
 .gigs > li .date .month {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 2px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px;
 }
-
 .gigs > li .date .day {
-    background: #f7f7f7;
-    color: #333;
-    font-size: 20px;
-    padding: 6px 12px;
+  background: #f7f7f7;
+  color: #333;
+  font-size: 20px;
+  padding: 6px 12px;
 }
-
 .gigs > li .details {
-    position: absolute;
-    top: 0;
-    left: 70px;
+  position: absolute;
+  top: 0;
+  left: 70px;
 }
-
 .gigs > li .details .artist {
-    font-weight: bold;
-    display: block;
+  font-weight: bold;
+  display: block;
 }
-
 .gigs > li .details .genre {
-    font-size: 15px;
+  font-size: 15px;
 }
-
-
 .gigs > li .actions {
-    font-size: 15px;
-    display: none;
+  font-size: 15px;
+  display: none;
 }
-
 .gigs > li:hover .actions {
-    display: block;
+  display: block;
 }
-
 .gigs > li .GigEdit {
-    padding-right: 5px;
+  padding-right: 5px;
 }
-
 .gigs > li .GigCancel {
-    padding-left: 7px;
+  padding-left: 7px;
 }
-
 .gigs > li .divider {
-    position: absolute;
-    border-left: 1px solid black;
-    left: 32px;
-    top: 41px;
-    bottom: 1px;
+  position: absolute;
+  border-left: 1px solid black;
+  left: 32px;
+  top: 41px;
+  bottom: 1px;
+}
+.gigs > li:last-child {
+  border-bottom: none;
+}
+.popover-notifications .popover-content {
+  padding: 0;
+}
+.popover-notifications .ul.notifications {
+  list-style: none;
+  padding-left: 0;
+}
+.popover-notifications .ul.notifications > li {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+.popover-notifications .ul.notifications .highlight {
+  font-weight: bold;
+}
+#SearchGigs {
+  width: 300px;
 }
