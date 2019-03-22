@@ -491,6 +491,22 @@ namespace GigHub.Controllers
 
             return View(followees);
         }
+
+        [HttpPost]
+        public ActionResult UnFollowArtist(string artistId)
+        {
+            var context = new ApplicationDbContext();
+            var userId = User.Identity.GetUserId();
+
+            var following = context
+                .Followings
+                .Single(f => f.FollowerId == userId && f.FolloweeId == artistId);
+
+            context.Followings.Remove(following);
+            context.SaveChanges();
+
+            return Content("Success");
+        }
         #endregion
 
     }
