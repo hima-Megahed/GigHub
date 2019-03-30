@@ -128,6 +128,21 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.3.2.1.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -191,6 +206,9 @@
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -205,6 +223,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\MappingProfile.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -215,85 +234,91 @@
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Dtos\AttendanceDto.cs" />
-    <Compile Include="Dtos\FollowingDto.cs" />
-    <Compile Include="Dtos\GenreDto.cs" />
-    <Compile Include="Dtos\GigDto.cs" />
-    <Compile Include="Dtos\NotificationDto.cs" />
-    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Core\Dtos\AttendanceDto.cs" />
+    <Compile Include="Core\Dtos\FollowingDto.cs" />
+    <Compile Include="Core\Dtos\GenreDto.cs" />
+    <Compile Include="Core\Dtos\GigDto.cs" />
+    <Compile Include="Core\Dtos\NotificationDto.cs" />
+    <Compile Include="Core\Dtos\UserDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901101117314_InitialModel.cs" />
-    <Compile Include="Migrations\201901101117314_InitialModel.Designer.cs">
+    <Compile Include="Persistence\EntityConfigurations\GigConfiguration.cs" />
+    <Compile Include="Persistence\Migrations\201901101117314_InitialModel.cs" />
+    <Compile Include="Persistence\Migrations\201901101117314_InitialModel.Designer.cs">
       <DependentUpon>201901101117314_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901101602521_CreateGigTable.cs" />
-    <Compile Include="Migrations\201901101602521_CreateGigTable.Designer.cs">
+    <Compile Include="Persistence\Migrations\201901101602521_CreateGigTable.cs" />
+    <Compile Include="Persistence\Migrations\201901101602521_CreateGigTable.Designer.cs">
       <DependentUpon>201901101602521_CreateGigTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901110624074_OverrideConventionsForGigsAndGenre.cs" />
-    <Compile Include="Migrations\201901110624074_OverrideConventionsForGigsAndGenre.Designer.cs">
+    <Compile Include="Persistence\Migrations\201901110624074_OverrideConventionsForGigsAndGenre.cs" />
+    <Compile Include="Persistence\Migrations\201901110624074_OverrideConventionsForGigsAndGenre.Designer.cs">
       <DependentUpon>201901110624074_OverrideConventionsForGigsAndGenre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901110707097_PopulateGenresTable.cs" />
-    <Compile Include="Migrations\201901110707097_PopulateGenresTable.Designer.cs">
+    <Compile Include="Persistence\Migrations\201901110707097_PopulateGenresTable.cs" />
+    <Compile Include="Persistence\Migrations\201901110707097_PopulateGenresTable.Designer.cs">
       <DependentUpon>201901110707097_PopulateGenresTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901211821553_AddForeignKeyPropertiesToGig.cs" />
-    <Compile Include="Migrations\201901211821553_AddForeignKeyPropertiesToGig.Designer.cs">
+    <Compile Include="Persistence\Migrations\201901211821553_AddForeignKeyPropertiesToGig.cs" />
+    <Compile Include="Persistence\Migrations\201901211821553_AddForeignKeyPropertiesToGig.Designer.cs">
       <DependentUpon>201901211821553_AddForeignKeyPropertiesToGig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901241943334_AddNameToApplicationUser.cs" />
-    <Compile Include="Migrations\201901241943334_AddNameToApplicationUser.Designer.cs">
+    <Compile Include="Persistence\Migrations\201901241943334_AddNameToApplicationUser.cs" />
+    <Compile Include="Persistence\Migrations\201901241943334_AddNameToApplicationUser.Designer.cs">
       <DependentUpon>201901241943334_AddNameToApplicationUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901250932387_AddAttendance.cs" />
-    <Compile Include="Migrations\201901250932387_AddAttendance.Designer.cs">
+    <Compile Include="Persistence\Migrations\201901250932387_AddAttendance.cs" />
+    <Compile Include="Persistence\Migrations\201901250932387_AddAttendance.Designer.cs">
       <DependentUpon>201901250932387_AddAttendance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901281553036_AddFollowing.cs" />
-    <Compile Include="Migrations\201901281553036_AddFollowing.Designer.cs">
+    <Compile Include="Persistence\Migrations\201901281553036_AddFollowing.cs" />
+    <Compile Include="Persistence\Migrations\201901281553036_AddFollowing.Designer.cs">
       <DependentUpon>201901281553036_AddFollowing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902220120320_mergeDeleteGig.cs" />
-    <Compile Include="Migrations\201902220120320_mergeDeleteGig.Designer.cs">
+    <Compile Include="Persistence\Migrations\201902220120320_mergeDeleteGig.cs" />
+    <Compile Include="Persistence\Migrations\201902220120320_mergeDeleteGig.Designer.cs">
       <DependentUpon>201902220120320_mergeDeleteGig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.cs" />
-    <Compile Include="Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.Designer.cs">
+    <Compile Include="Persistence\Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.cs" />
+    <Compile Include="Persistence\Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.Designer.cs">
       <DependentUpon>201902220229411_AddIsCanceledToGig_ImplementingDelete.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902220539581_AddNotification.cs" />
-    <Compile Include="Migrations\201902220539581_AddNotification.Designer.cs">
+    <Compile Include="Persistence\Migrations\201902220539581_AddNotification.cs" />
+    <Compile Include="Persistence\Migrations\201902220539581_AddNotification.Designer.cs">
       <DependentUpon>201902220539581_AddNotification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Attendance.cs" />
-    <Compile Include="Models\Following.cs" />
-    <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\Gig.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Notification.cs" />
-    <Compile Include="Models\NotificationType.cs" />
-    <Compile Include="Models\UserNotification.cs" />
+    <Compile Include="Persistence\Migrations\Configuration.cs" />
+    <Compile Include="Core\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Persistence\ApplicationDbContext.cs" />
+    <Compile Include="Core\Models\Attendance.cs" />
+    <Compile Include="Core\Models\Following.cs" />
+    <Compile Include="Core\Models\Genre.cs" />
+    <Compile Include="Core\Models\Gig.cs" />
+    <Compile Include="Core\Models\ApplicationUser.cs" />
+    <Compile Include="Core\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Core\Models\Notification.cs" />
+    <Compile Include="Core\Models\NotificationType.cs" />
+    <Compile Include="Core\Models\UserNotification.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AttendanceRepository.cs" />
-    <Compile Include="Repositories\FollowingRepository.cs" />
-    <Compile Include="Repositories\GenreRepository.cs" />
-    <Compile Include="Repositories\GigRepository.cs" />
+    <Compile Include="Persistence\Repositories\AttendanceRepository.cs" />
+    <Compile Include="Persistence\Repositories\FollowingRepository.cs" />
+    <Compile Include="Persistence\Repositories\GenreRepository.cs" />
+    <Compile Include="Persistence\Repositories\GigRepository.cs" />
+    <Compile Include="Core\Repositories\IAttendanceRepository.cs" />
+    <Compile Include="Core\Repositories\IFollowingRepository.cs" />
+    <Compile Include="Core\Repositories\IGenreRepository.cs" />
+    <Compile Include="Core\Repositories\IGigRepository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\FutureDate.cs" />
-    <Compile Include="ViewModels\GigDetailsViewModel.cs" />
-    <Compile Include="ViewModels\GigFormViewModel.cs" />
-    <Compile Include="ViewModels\GigsViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\ValidTime.cs" />
+    <Compile Include="Core\ViewModels\FutureDate.cs" />
+    <Compile Include="Core\ViewModels\GigDetailsViewModel.cs" />
+    <Compile Include="Core\ViewModels\GigFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\GigsViewModel.cs" />
+    <Compile Include="Core\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Core\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Core\ViewModels\ValidTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -308,7 +333,7 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -336,10 +361,10 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
@@ -427,6 +452,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -436,37 +462,37 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901101117314_InitialModel.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901101117314_InitialModel.resx">
       <DependentUpon>201901101117314_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901101602521_CreateGigTable.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901101602521_CreateGigTable.resx">
       <DependentUpon>201901101602521_CreateGigTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901110624074_OverrideConventionsForGigsAndGenre.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901110624074_OverrideConventionsForGigsAndGenre.resx">
       <DependentUpon>201901110624074_OverrideConventionsForGigsAndGenre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901110707097_PopulateGenresTable.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901110707097_PopulateGenresTable.resx">
       <DependentUpon>201901110707097_PopulateGenresTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901211821553_AddForeignKeyPropertiesToGig.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901211821553_AddForeignKeyPropertiesToGig.resx">
       <DependentUpon>201901211821553_AddForeignKeyPropertiesToGig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901241943334_AddNameToApplicationUser.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901241943334_AddNameToApplicationUser.resx">
       <DependentUpon>201901241943334_AddNameToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901250932387_AddAttendance.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901250932387_AddAttendance.resx">
       <DependentUpon>201901250932387_AddAttendance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901281553036_AddFollowing.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201901281553036_AddFollowing.resx">
       <DependentUpon>201901281553036_AddFollowing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902220120320_mergeDeleteGig.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201902220120320_mergeDeleteGig.resx">
       <DependentUpon>201902220120320_mergeDeleteGig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.resx">
       <DependentUpon>201902220229411_AddIsCanceledToGig_ImplementingDelete.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902220539581_AddNotification.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201902220539581_AddNotification.resx">
       <DependentUpon>201902220539581_AddNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
