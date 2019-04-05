@@ -138,19 +138,20 @@ namespace GigHub.Controllers
         [HttpPost]
         public ActionResult Cancel(int gigId)
         {
-            var userId = User.Identity.GetUserId();
             var gig = _unitOfWork.Gigs.GetGigWithAttendees(gigId);
+            var userId = User.Identity.GetUserId();
 
-            if (gig.IsCanceled)
-            {
+            if (gig == null || gig.IsCanceled )
                 return HttpNotFound();
-            }
+
+            if(gig.ArtistId != userId)
+                return new HttpUnauthorizedResult();
 
             gig.Cancel();
 
             _unitOfWork.Complete();
 
-            return Content("");
+            return Content("Cancelled");
         }
 
         public ActionResult Search(GigsViewModel viewModel)
