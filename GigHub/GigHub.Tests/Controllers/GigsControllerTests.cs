@@ -1,19 +1,14 @@
-﻿using System;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using FluentAssertions;
 using GigHub.Controllers;
 using GigHub.Core;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
-using GigHub.Persistence.Repositories;
 using GigHub.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace GigHub.Tests
+namespace GigHub.Tests.Controllers
 {
     [TestClass]
     public class GigsControllerTests
@@ -24,7 +19,7 @@ namespace GigHub.Tests
         private const string UserId = "3";
 
         [TestInitialize]
-        public void InitializeTests()
+        public void TestInitialize()
         {
             _mockGigsRepository = new Mock<IGigRepository>();
 
