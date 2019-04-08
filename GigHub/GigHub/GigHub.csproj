@@ -277,10 +277,6 @@
     <Compile Include="Persistence\Migrations\201901281553036_AddFollowing.Designer.cs">
       <DependentUpon>201901281553036_AddFollowing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\201902220120320_mergeDeleteGig.cs" />
-    <Compile Include="Persistence\Migrations\201902220120320_mergeDeleteGig.Designer.cs">
-      <DependentUpon>201902220120320_mergeDeleteGig.cs</DependentUpon>
-    </Compile>
     <Compile Include="Persistence\Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.cs" />
     <Compile Include="Persistence\Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.Designer.cs">
       <DependentUpon>201902220229411_AddIsCanceledToGig_ImplementingDelete.cs</DependentUpon>
@@ -486,9 +482,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201901281553036_AddFollowing.resx">
       <DependentUpon>201901281553036_AddFollowing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\201902220120320_mergeDeleteGig.resx">
-      <DependentUpon>201902220120320_mergeDeleteGig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201902220229411_AddIsCanceledToGig_ImplementingDelete.resx">
       <DependentUpon>201902220229411_AddIsCanceledToGig_ImplementingDelete.cs</DependentUpon>
